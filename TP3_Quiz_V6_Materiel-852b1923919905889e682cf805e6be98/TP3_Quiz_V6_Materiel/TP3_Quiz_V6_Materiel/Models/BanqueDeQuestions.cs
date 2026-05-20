@@ -31,11 +31,13 @@ namespace Models
 
             Questions = new List<IQuestion>() // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!C'est questions sont temporaire, il sont fait par IA, je vais les refaire moi même bientot
             {
+                
+                
                 ////TODO BQ 1: Ajouter au moins 10 questions de types variés : 
                 // -QuestionNumerique
                 new QuestionNumerique("Combien fait 2 + 2 ?", Categorie.Mathematiques, 10, 4)
                 {
-                Indice = "Résultat entre 2 et 6",
+                Indice = "Résultat entre 2 et 5",
                 PenaliteIndice = 0.2
                 },
                 new QuestionNumerique("Combien fait 10 / 2 ?", Categorie.Mathematiques, 10, 5)
@@ -57,17 +59,16 @@ namespace Models
                 new QuestionReponsesMultiples("Quels sont des structures de données ?",Categorie.Programmation,15,new List<string>() { "Liste", "Tableau" },new List<string>() { "Liste", "Tableau", "Variable", "Classe" }),
                 // - QuestionReponseCourte
 
-                new QuestionReponseCourte("Quel est le mot-clé pour une classe en C# ?",Categorie.Programmation,5,"class") 
+                new QuestionReponseCourte("Quel est le mot-clé pour une classe en C# ?",Categorie.Programmation,5,"class")
                 {
                 Indice = "Commence par n...",
                 PenaliteIndice = 0.2
                 },
-                new QuestionReponseCourte("Quel mot-clé crée un objet en C# ?",Categorie.Programmation,5,"new")     
+                new QuestionReponseCourte("Quel mot-clé crée un objet en C# ?",Categorie.Programmation,5,"new")
                 {
                 Indice = "C'est un mot réservé du langage",
                 PenaliteIndice = 0.2
                 }
-
             };
         }
         
