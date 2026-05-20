@@ -104,21 +104,50 @@ namespace Models
             Points = points;
             BonneReponse = bonneReponse;
         }
-
-        
-        public void UtiliserIndice()// IReponseAvecIndice
+        public QuestionReponseCourte(string enonce, Categorie categorie, int points, string bonneReponse, string indice, double penaliteIndice)
         {
-            m_indiceUtilise = true;
+            Enonce = enonce;
+            Categorie = categorie;
+            Points = points;
+            BonneReponse = bonneReponse;
+
+            Indice = indice;
+            PenaliteIndice = penaliteIndice;
+
+            m_indiceUtilise = false;
         }
 
-        public bool ValiderReponse(string reponse)
+        public void UtiliserIndice()
         {
-            return reponse.Trim().ToLower()== BonneReponse.Trim().ToLower();
+            IndiceUtilise = true;
         }
 
         public double CorrigerReponse(string reponse)
         {
-            return ValiderReponse(reponse) ? Points : 0;
+            if (!ValiderReponse(reponse))
+                return 0;
+
+            double score = Points;
+
+            if (IndiceUtilise)
+                score *= (1 - PenaliteIndice);
+
+            return score;
         }
+
+        public bool ValiderReponse(string reponse)
+        {
+            if (string.IsNullOrWhiteSpace(reponse))
+            { 
+                return false;
+            }
+            return reponse.Trim().ToLower() == BonneReponse.Trim().ToLower();
+        }
+
+        
     }
+    
+
+        
+        
 }

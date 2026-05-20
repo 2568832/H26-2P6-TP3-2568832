@@ -29,17 +29,49 @@ namespace Models
         public BanqueQuestions()
         {
 
-            Questions = new List<IQuestion>()
+            Questions = new List<IQuestion>() // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!C'est questions sont temporaire, il sont fait par IA, je vais les refaire moi même bientot
             {
-                ////TODO BQ 1: Ajouter au moins 10 questions de types variés :
+                ////TODO BQ 1: Ajouter au moins 10 questions de types variés : 
                 // -QuestionNumerique
+                new QuestionNumerique("Combien fait 2 + 2 ?", Categorie.Mathematiques, 10, 4)
+                {
+                Indice = "Résultat entre 2 et 6",
+                PenaliteIndice = 0.2
+                },
+                new QuestionNumerique("Combien fait 10 / 2 ?", Categorie.Mathematiques, 10, 5)
+                {
+                Indice = "C'est la moitier de 10",
+                PenaliteIndice = 0.2
+                },
+
                 // - QuestionVraiFaux
+                new QuestionVraiFaux("Le ciel est bleu.", Categorie.CultureGenerale, 5, true),
+                new QuestionVraiFaux("C# est un langage compilé.", Categorie.Programmation, 5, true),
+
+
                 // - QuestionReponseUnique
+                new QuestionReponseUnique("Quel langage est utilisé pour le développement Android ?",Categorie.Programmation,10,"Java",new List<string>() { "Java", "C#", "Python", "C++" }),
+                new QuestionReponseUnique("Quel est le symbole pour une liste générique en C# ?",Categorie.Programmation,10,"<>",new List<string>() { "<>", "[]", "{}", "()" }),
                 // - QuestionReponsesMultiples
+                new QuestionReponsesMultiples("Quels sont des langages de programmation ?",Categorie.Programmation,15,new List<string>() { "C#", "Java" },new List<string>() { "C#", "Java", "HTML", "CSS" }),
+                new QuestionReponsesMultiples("Quels sont des structures de données ?",Categorie.Programmation,15,new List<string>() { "Liste", "Tableau" },new List<string>() { "Liste", "Tableau", "Variable", "Classe" }),
                 // - QuestionReponseCourte
+
+                new QuestionReponseCourte("Quel est le mot-clé pour une classe en C# ?",Categorie.Programmation,5,"class") 
+                {
+                Indice = "Commence par n...",
+                PenaliteIndice = 0.2
+                },
+                new QuestionReponseCourte("Quel mot-clé crée un objet en C# ?",Categorie.Programmation,5,"new")     
+                {
+                Indice = "C'est un mot réservé du langage",
+                PenaliteIndice = 0.2
+                }
 
             };
         }
+        
+        
 
         #endregion
 

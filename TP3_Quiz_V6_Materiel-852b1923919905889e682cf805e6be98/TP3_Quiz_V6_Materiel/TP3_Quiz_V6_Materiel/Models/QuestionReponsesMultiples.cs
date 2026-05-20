@@ -71,15 +71,13 @@ namespace Models
                 if (value.Count == 0)
                     throw new ArgumentException();
 
+               
                 if (m_options != null)
                 {
                     foreach (string rep in value)
                     {
                         if (!m_options.Contains(rep))
-                        {
                             throw new ArgumentException();
-
-                        }
                     }
                 }
 
@@ -97,12 +95,13 @@ namespace Models
 
         public bool ValiderReponse(string reponse)
         {
+            if (string.IsNullOrWhiteSpace(reponse) || BonneReponse == null)
+                return false;
+
             List<string> Ressus = reponse.Split(',').ToList();
 
             if (Ressus.Count != BonneReponse.Count)
-            {
                 return false;
-            }
 
             for (int i = 0; i < BonneReponse.Count; i++)
             {
@@ -118,14 +117,12 @@ namespace Models
                 }
 
                 if (!trouvee)
-                {
                     return false;
-                }
             }
 
             return true;
         }
-        
+
 
         public double CorrigerReponse(string reponse)
         {

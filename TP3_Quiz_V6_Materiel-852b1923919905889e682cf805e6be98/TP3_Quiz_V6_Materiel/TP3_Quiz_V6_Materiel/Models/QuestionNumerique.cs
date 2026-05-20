@@ -94,7 +94,18 @@ namespace Models
             Points = points;
             BonneReponse = bonneReponse;
         }
+        public QuestionNumerique(string enonce, Categorie categorie, int points, double bonneReponse, string indice, double penaliteIndice)
+        {
+            Enonce = enonce;
+            Categorie = categorie;
+            Points = points;
+            BonneReponse = bonneReponse;
 
+            Indice = indice;
+            PenaliteIndice = penaliteIndice;
+
+            m_indiceUtilise = false;
+        }
         public void UtiliserIndice()// IReponseAvecIndice
         {
             m_indiceUtilise = true;
@@ -102,7 +113,13 @@ namespace Models
 
         public double CorrigerReponse(string reponse)
         {
-            return ValiderReponse(reponse) ? Points : 0;
+            if (!ValiderReponse(reponse))
+                return 0;
+
+            if (m_indiceUtilise)
+                return 0;
+
+            return m_points;
         }
         public bool ValiderReponse(string reponse)
         {

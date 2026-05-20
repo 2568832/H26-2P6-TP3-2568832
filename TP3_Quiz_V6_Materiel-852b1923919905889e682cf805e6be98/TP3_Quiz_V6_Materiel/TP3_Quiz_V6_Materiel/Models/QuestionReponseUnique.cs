@@ -68,7 +68,10 @@ namespace Models
                 if (value == null || value.Trim().Length == 0)
                     throw new ArgumentException();
 
-                if (m_options != null && !m_options.Contains(value))
+                if (m_options == null)
+                    throw new ArgumentException();
+
+                if (!m_options.Contains(value))
                     throw new ArgumentException();
 
                 m_bonneReponse = value;
@@ -78,16 +81,21 @@ namespace Models
         // Constructeur
         public QuestionReponseUnique(string enonce,Categorie categorie,int points,string bonneReponse,List<string> options)
         {
+            Options = options;          // 1. assigner d'abord options
+            BonneReponse = bonneReponse; // 2. ensuite valider bonne réponse
+
             Enonce = enonce;
             Categorie = categorie;
             Points = points;
-            BonneReponse = bonneReponse;
-            Options = options;
         }
 
         public bool ValiderReponse(string reponse)
         {
-            return reponse == BonneReponse;
+            if (string.IsNullOrWhiteSpace(reponse))
+                return false;
+
+            return reponse.Trim().ToLower() ==
+                   m_bonneReponse.Trim().ToLower();
         }
 
         public double CorrigerReponse(string reponse)
